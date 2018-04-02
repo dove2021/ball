@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.order.OrderCleanMapper" >
+  <resultMap id="BaseResultMap" type="com.tbug.ball.service.model.order.OrderClean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cleaner" property="cleaner" jdbcType="VARCHAR" />
+    <result column="clean_time" property="cleanTime" jdbcType="TIMESTAMP" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="clean_amount" property="cleanAmount" jdbcType="DECIMAL" />
+    <result column="is_draw" property="isDraw" jdbcType="CHAR" />
+    <result column="draw_time" property="drawTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cleaner, clean_time, customer_id, clean_amount, is_draw, draw_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_clean
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_clean
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tbug.ball.service.model.order.OrderClean" >
+    insert into order_clean (id, cleaner, clean_time, 
+      customer_id, clean_amount, is_draw, 
+      draw_time)
+    values (#{id,jdbcType=INTEGER}, #{cleaner,jdbcType=VARCHAR}, #{cleanTime,jdbcType=TIMESTAMP}, 
+      #{customerId,jdbcType=INTEGER}, #{cleanAmount,jdbcType=DECIMAL}, #{isDraw,jdbcType=CHAR}, 
+      #{drawTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tbug.ball.service.model.order.OrderClean" >
+    insert into order_clean
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cleaner != null" >
+        cleaner,
+      </if>
+      <if test="cleanTime != null" >
+        clean_time,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="cleanAmount != null" >
+        clean_amount,
+      </if>
+      <if test="isDraw != null" >
+        is_draw,
+      </if>
+      <if test="drawTime != null" >
+        draw_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cleaner != null" >
+        #{cleaner,jdbcType=VARCHAR},
+      </if>
+      <if test="cleanTime != null" >
+        #{cleanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="cleanAmount != null" >
+        #{cleanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isDraw != null" >
+        #{isDraw,jdbcType=CHAR},
+      </if>
+      <if test="drawTime != null" >
+        #{drawTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.order.OrderClean" >
+    update order_clean
+    <set >
+      <if test="cleaner != null" >
+        cleaner = #{cleaner,jdbcType=VARCHAR},
+      </if>
+      <if test="cleanTime != null" >
+        clean_time = #{cleanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="cleanAmount != null" >
+        clean_amount = #{cleanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isDraw != null" >
+        is_draw = #{isDraw,jdbcType=CHAR},
+      </if>
+      <if test="drawTime != null" >
+        draw_time = #{drawTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.order.OrderClean" >
+    update order_clean
+    set cleaner = #{cleaner,jdbcType=VARCHAR},
+      clean_time = #{cleanTime,jdbcType=TIMESTAMP},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      clean_amount = #{cleanAmount,jdbcType=DECIMAL},
+      is_draw = #{isDraw,jdbcType=CHAR},
+      draw_time = #{drawTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

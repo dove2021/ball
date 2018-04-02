@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.message.MobileVerifycodeMapper" >
+  <resultMap id="BaseResultMap" type="com.tbug.ball.service.model.message.MobileVerifycode" >
+    <id column="verifycode_id" property="verifycodeId" jdbcType="INTEGER" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="verify_type" property="verifyType" jdbcType="CHAR" />
+    <result column="send_day" property="sendDay" jdbcType="CHAR" />
+    <result column="send_times" property="sendTimes" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="verifycode_valid" property="verifycodeValid" jdbcType="INTEGER" />
+    <result column="verifycode_str" property="verifycodeStr" jdbcType="VARCHAR" />
+    <result column="verify_result" property="verifyResult" jdbcType="CHAR" />
+    <result column="verify_err_num" property="verifyErrNum" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    verifycode_id, phone_no, verify_type, send_day, send_times, create_time, verifycode_valid, 
+    verifycode_str, verify_result, verify_err_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_verifycode
+    where verifycode_id = #{verifycodeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mobile_verifycode
+    where verifycode_id = #{verifycodeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tbug.ball.service.model.message.MobileVerifycode" >
+    insert into mobile_verifycode (verifycode_id, phone_no, verify_type, 
+      send_day, send_times, create_time, 
+      verifycode_valid, verifycode_str, verify_result, 
+      verify_err_num)
+    values (#{verifycodeId,jdbcType=INTEGER}, #{phoneNo,jdbcType=VARCHAR}, #{verifyType,jdbcType=CHAR}, 
+      #{sendDay,jdbcType=CHAR}, #{sendTimes,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{verifycodeValid,jdbcType=INTEGER}, #{verifycodeStr,jdbcType=VARCHAR}, #{verifyResult,jdbcType=CHAR}, 
+      #{verifyErrNum,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tbug.ball.service.model.message.MobileVerifycode" >
+    insert into mobile_verifycode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verifycodeId != null" >
+        verifycode_id,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="verifyType != null" >
+        verify_type,
+      </if>
+      <if test="sendDay != null" >
+        send_day,
+      </if>
+      <if test="sendTimes != null" >
+        send_times,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="verifycodeValid != null" >
+        verifycode_valid,
+      </if>
+      <if test="verifycodeStr != null" >
+        verifycode_str,
+      </if>
+      <if test="verifyResult != null" >
+        verify_result,
+      </if>
+      <if test="verifyErrNum != null" >
+        verify_err_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verifycodeId != null" >
+        #{verifycodeId,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyType != null" >
+        #{verifyType,jdbcType=CHAR},
+      </if>
+      <if test="sendDay != null" >
+        #{sendDay,jdbcType=CHAR},
+      </if>
+      <if test="sendTimes != null" >
+        #{sendTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifycodeValid != null" >
+        #{verifycodeValid,jdbcType=INTEGER},
+      </if>
+      <if test="verifycodeStr != null" >
+        #{verifycodeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyResult != null" >
+        #{verifyResult,jdbcType=CHAR},
+      </if>
+      <if test="verifyErrNum != null" >
+        #{verifyErrNum,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.message.MobileVerifycode" >
+    update mobile_verifycode
+    <set >
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyType != null" >
+        verify_type = #{verifyType,jdbcType=CHAR},
+      </if>
+      <if test="sendDay != null" >
+        send_day = #{sendDay,jdbcType=CHAR},
+      </if>
+      <if test="sendTimes != null" >
+        send_times = #{sendTimes,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifycodeValid != null" >
+        verifycode_valid = #{verifycodeValid,jdbcType=INTEGER},
+      </if>
+      <if test="verifycodeStr != null" >
+        verifycode_str = #{verifycodeStr,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyResult != null" >
+        verify_result = #{verifyResult,jdbcType=CHAR},
+      </if>
+      <if test="verifyErrNum != null" >
+        verify_err_num = #{verifyErrNum,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where verifycode_id = #{verifycodeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.message.MobileVerifycode" >
+    update mobile_verifycode
+    set phone_no = #{phoneNo,jdbcType=VARCHAR},
+      verify_type = #{verifyType,jdbcType=CHAR},
+      send_day = #{sendDay,jdbcType=CHAR},
+      send_times = #{sendTimes,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      verifycode_valid = #{verifycodeValid,jdbcType=INTEGER},
+      verifycode_str = #{verifycodeStr,jdbcType=VARCHAR},
+      verify_result = #{verifyResult,jdbcType=CHAR},
+      verify_err_num = #{verifyErrNum,jdbcType=DECIMAL}
+    where verifycode_id = #{verifycodeId,jdbcType=INTEGER}
+  </update>
+</mapper>

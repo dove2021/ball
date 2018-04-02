@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.system.SequenceBrokerLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.tbug.ball.service.model.system.SequenceBrokerLevel" >
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="current_value" property="currentValue" jdbcType="INTEGER" />
+    <result column="increment" property="increment" jdbcType="INTEGER" />
+    <result column="max_value" property="maxValue" jdbcType="INTEGER" />
+    <result column="is_cycle" property="isCycle" jdbcType="CHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    name, current_value, increment, max_value, is_cycle, version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sequence_broker_level
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sequence_broker_level
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tbug.ball.service.model.system.SequenceBrokerLevel" >
+    insert into sequence_broker_level (name, current_value, increment, 
+      max_value, is_cycle, version
+      )
+    values (#{name,jdbcType=VARCHAR}, #{currentValue,jdbcType=INTEGER}, #{increment,jdbcType=INTEGER}, 
+      #{maxValue,jdbcType=INTEGER}, #{isCycle,jdbcType=CHAR}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tbug.ball.service.model.system.SequenceBrokerLevel" >
+    insert into sequence_broker_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="currentValue != null" >
+        current_value,
+      </if>
+      <if test="increment != null" >
+        increment,
+      </if>
+      <if test="maxValue != null" >
+        max_value,
+      </if>
+      <if test="isCycle != null" >
+        is_cycle,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currentValue != null" >
+        #{currentValue,jdbcType=INTEGER},
+      </if>
+      <if test="increment != null" >
+        #{increment,jdbcType=INTEGER},
+      </if>
+      <if test="maxValue != null" >
+        #{maxValue,jdbcType=INTEGER},
+      </if>
+      <if test="isCycle != null" >
+        #{isCycle,jdbcType=CHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.system.SequenceBrokerLevel" >
+    update sequence_broker_level
+    <set >
+      <if test="currentValue != null" >
+        current_value = #{currentValue,jdbcType=INTEGER},
+      </if>
+      <if test="increment != null" >
+        increment = #{increment,jdbcType=INTEGER},
+      </if>
+      <if test="maxValue != null" >
+        max_value = #{maxValue,jdbcType=INTEGER},
+      </if>
+      <if test="isCycle != null" >
+        is_cycle = #{isCycle,jdbcType=CHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.system.SequenceBrokerLevel" >
+    update sequence_broker_level
+    set current_value = #{currentValue,jdbcType=INTEGER},
+      increment = #{increment,jdbcType=INTEGER},
+      max_value = #{maxValue,jdbcType=INTEGER},
+      is_cycle = #{isCycle,jdbcType=CHAR},
+      version = #{version,jdbcType=INTEGER}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

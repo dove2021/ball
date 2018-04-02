@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    <description>Spring MVC Configuration</description>
+
+  	<!-- 加载配置属性文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:ball-dev.properties" />
+	<context:component-scan base-package="com.tbug.ball"/>
+	<mvc:annotation-driven />
+
+ 	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+	<bean 
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+ 	
+	<!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
+	<mvc:default-servlet-handler />
+	<!-- 静态资源映射 -->
+	<mvc:resources location="/static/" mapping="/static/**" cache-period="60000"/>  
+	
+	<!-- 拦截器 -->
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+		    <mvc:mapping path="/customer/**"/>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+ 	<!-- 定义无Controller的path-view直接映射即如果当前路径是/ 则重定向到/index -->
+ 	<!-- <mvc:view-controller path="/home" view-name="home"/>-->
+ 	
+ 	<!-- exception handler -->
+<!--  	<bean class="com.cjmex.mall.exception.MySimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Throwable">common/show_message</prop>
+				<prop key="com.cjmex.mall.exception.SessionTimeoutException">/login</prop>
+			</props>
+		</property>
+	</bean> -->
+</beans>

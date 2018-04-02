@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.user.BrokerMapper" >
+  <resultMap id="BaseResultMap" type="com.tbug.ball.service.model.user.Broker" >
+    <id column="broker_id" property="brokerId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="broker_code" property="brokerCode" jdbcType="VARCHAR" />
+    <result column="sign_code" property="signCode" jdbcType="VARCHAR" />
+    <result column="level_num" property="levelNum" jdbcType="TINYINT" />
+    <result column="level_code" property="levelCode" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="create_type" property="createType" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="INTEGER" />
+    <result column="last_modify_type" property="lastModifyType" jdbcType="CHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="pwd_err_times" property="pwdErrTimes" jdbcType="TINYINT" />
+    <result column="lock_time" property="lockTime" jdbcType="TIMESTAMP" />
+    <result column="unlock_time" property="unlockTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    broker_id, member_id, member_name, broker_code, sign_code, level_num, level_code, 
+    nick_name, create_user, create_type, create_time, last_modify_user, last_modify_type, 
+    modify_time, login_name, password, salt, status, pwd_err_times, lock_time, unlock_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tbug.ball.service.model.user.Broker" >
+    insert into broker (broker_id, member_id, member_name, 
+      broker_code, sign_code, level_num, 
+      level_code, nick_name, create_user, 
+      create_type, create_time, last_modify_user, 
+      last_modify_type, modify_time, login_name, 
+      password, salt, status, 
+      pwd_err_times, lock_time, unlock_time
+      )
+    values (#{brokerId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{memberName,jdbcType=VARCHAR}, 
+      #{brokerCode,jdbcType=VARCHAR}, #{signCode,jdbcType=VARCHAR}, #{levelNum,jdbcType=TINYINT}, 
+      #{levelCode,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{createUser,jdbcType=INTEGER}, 
+      #{createType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastModifyUser,jdbcType=INTEGER}, 
+      #{lastModifyType,jdbcType=CHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{loginName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{pwdErrTimes,jdbcType=TINYINT}, #{lockTime,jdbcType=TIMESTAMP}, #{unlockTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tbug.ball.service.model.user.Broker" >
+    insert into broker
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brokerId != null" >
+        broker_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="brokerCode != null" >
+        broker_code,
+      </if>
+      <if test="signCode != null" >
+        sign_code,
+      </if>
+      <if test="levelNum != null" >
+        level_num,
+      </if>
+      <if test="levelCode != null" >
+        level_code,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createType != null" >
+        create_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastModifyUser != null" >
+        last_modify_user,
+      </if>
+      <if test="lastModifyType != null" >
+        last_modify_type,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pwdErrTimes != null" >
+        pwd_err_times,
+      </if>
+      <if test="lockTime != null" >
+        lock_time,
+      </if>
+      <if test="unlockTime != null" >
+        unlock_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brokerId != null" >
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerCode != null" >
+        #{brokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signCode != null" >
+        #{signCode,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNum != null" >
+        #{levelNum,jdbcType=TINYINT},
+      </if>
+      <if test="levelCode != null" >
+        #{levelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createType != null" >
+        #{createType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser != null" >
+        #{lastModifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyType != null" >
+        #{lastModifyType,jdbcType=CHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="pwdErrTimes != null" >
+        #{pwdErrTimes,jdbcType=TINYINT},
+      </if>
+      <if test="lockTime != null" >
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlockTime != null" >
+        #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.user.Broker" >
+    update broker
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerCode != null" >
+        broker_code = #{brokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signCode != null" >
+        sign_code = #{signCode,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNum != null" >
+        level_num = #{levelNum,jdbcType=TINYINT},
+      </if>
+      <if test="levelCode != null" >
+        level_code = #{levelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createType != null" >
+        create_type = #{createType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser != null" >
+        last_modify_user = #{lastModifyUser,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyType != null" >
+        last_modify_type = #{lastModifyType,jdbcType=CHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="pwdErrTimes != null" >
+        pwd_err_times = #{pwdErrTimes,jdbcType=TINYINT},
+      </if>
+      <if test="lockTime != null" >
+        lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlockTime != null" >
+        unlock_time = #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.user.Broker" >
+    update broker
+    set member_id = #{memberId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      broker_code = #{brokerCode,jdbcType=VARCHAR},
+      sign_code = #{signCode,jdbcType=VARCHAR},
+      level_num = #{levelNum,jdbcType=TINYINT},
+      level_code = #{levelCode,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=INTEGER},
+      create_type = #{createType,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_modify_user = #{lastModifyUser,jdbcType=INTEGER},
+      last_modify_type = #{lastModifyType,jdbcType=CHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      pwd_err_times = #{pwdErrTimes,jdbcType=TINYINT},
+      lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      unlock_time = #{unlockTime,jdbcType=TIMESTAMP}
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+</mapper>
