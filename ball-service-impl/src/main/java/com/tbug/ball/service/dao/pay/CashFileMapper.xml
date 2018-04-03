@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.pay.CashFileMapper">
+	<resultMap id="BaseResultMap" type="com.tbug.ball.service.model.pay.CashFile">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="channel_id" property="channelId" jdbcType="INTEGER" />
+		<result column="org_file_name" property="orgFileName" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="create_person" property="createPerson"
+			jdbcType="VARCHAR" />
+		<result column="new_file_name" property="newFileName" jdbcType="VARCHAR" />
+		<result column="new_flie_url" property="newFlieUrl" jdbcType="VARCHAR" />
+		<result column="file_size" property="fileSize" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, channel_id,org_file_name, create_date, create_person, new_file_name,
+		new_flie_url, file_size,
+		status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from cash_file
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from cash_file
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tbug.ball.service.model.pay.CashFile">
+		insert into cash_file (id, channel_id,org_file_name, create_date,
+		create_person, new_file_name, new_flie_url,
+		file_size, status)
+		values (#{id,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER},#{orgFileName,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{createPerson,jdbcType=VARCHAR}, #{newFileName,jdbcType=VARCHAR}, #{newFlieUrl,jdbcType=VARCHAR},
+		#{fileSize,jdbcType=INTEGER}, #{status,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tbug.ball.service.model.pay.CashFile">
+		insert into cash_file
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="channelId != null">
+				channel_id,
+			</if>
+			<if test="orgFileName != null">
+				org_file_name,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createPerson != null">
+				create_person,
+			</if>
+			<if test="newFileName != null">
+				new_file_name,
+			</if>
+			<if test="newFlieUrl != null">
+				new_flie_url,
+			</if>
+			<if test="fileSize != null">
+				file_size,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="channelId != null">
+				#{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="orgFileName != null">
+				#{orgFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createPerson != null">
+				#{createPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="newFileName != null">
+				#{newFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="newFlieUrl != null">
+				#{newFlieUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				#{fileSize,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.pay.CashFile">
+		update cash_file
+		<set>
+			<if test="channelId != null">
+				channel_id = #{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="orgFileName != null">
+				org_file_name = #{orgFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createPerson != null">
+				create_person = #{createPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="newFileName != null">
+				new_file_name = #{newFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="newFlieUrl != null">
+				new_flie_url = #{newFlieUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				file_size = #{fileSize,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.pay.CashFile">
+		update cash_file
+		set channel_id = #{channelId,jdbcType=INTEGER},
+		org_file_name = #{orgFileName,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		create_person = #{createPerson,jdbcType=VARCHAR},
+		new_file_name = #{newFileName,jdbcType=VARCHAR},
+		new_flie_url = #{newFlieUrl,jdbcType=VARCHAR},
+		file_size = #{fileSize,jdbcType=INTEGER},
+		status = #{status,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="listCashFile" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/>
+		from cash_file
+		where channel_id = #{channelId,jdbcType=INTEGER} and status = #{status,jdbcType=CHAR}
+	</select>
+	<select id="selectByChannelAndName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/>
+		from cash_file
+		where channel_id = #{channelId,jdbcType=INTEGER} 
+		and org_file_name = #{orgFileName,jdbcType=VARCHAR} 
+		and status = '1'
+	</select>
+</mapper>

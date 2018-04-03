@@ -1,0 +1,18 @@
+## 日志
+logging:
+  level: INFO
+  file: logs/ball-manage.log
+
+## 收款码上传路径
+pic_upload_dir: /home/app/file/ball-manage/
+
+## dubbo
+dubbo:
+  application:
+    name: consumer-of-ball-manage
+  register:
+    protocol: zookeeper
+    address: 127.0.0.1:2181
+  provider:
+    timeout: 3000
+    retries: 1

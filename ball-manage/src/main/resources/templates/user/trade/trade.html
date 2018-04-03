@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include::header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div id="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button type="button" shiro:hasPermission="user:trade:add"
+								class="btn btn-primary" onclick="add()">
+								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+						</div>
+						<div class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div class="columns pull-right col-md-2">
+							<input id="searchName" type="text" class="form-control" placeholder="用户名">
+						</div>
+					</div>
+					<table id="tradeTable" data-mobile-responsive="true"></table>
+				</div>
+			</div>
+		</div>
+		<div>
+			<script type="text/javascript">
+				var e_repwd = 'hidden';
+				var e_role = 'hidden';
+				var e_freeze = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="user:trade:repwd">
+			<script type="text/javascript">
+				e_repwd = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="user:trade:rerole">
+			<script type="text/javascript">
+				e_role = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="user:trade:freeze">
+			<script type="text/javascript">
+				e_freeze = '';
+			</script>
+		</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/user/trade/trade.js">
+	</script>
+</body>
+
+</html>

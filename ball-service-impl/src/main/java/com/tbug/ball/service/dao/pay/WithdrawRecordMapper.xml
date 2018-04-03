@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.pay.WithdrawRecordMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tbug.ball.service.model.pay.WithdrawRecord">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="withdraw_code" property="withdrawCode"
+			jdbcType="CHAR" />
+		<result column="customer_id" property="customerId" jdbcType="INTEGER" />
+		<result column="customer_code" property="customerCode"
+			jdbcType="CHAR" />
+		<result column="member_code" property="memberCode" jdbcType="CHAR" />
+		<result column="withdraw_amount" property="withdrawAmount"
+			jdbcType="DECIMAL" />
+		<result column="withdraw_fee" property="withdrawFee" jdbcType="DECIMAL" />
+		<result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+		<result column="finish_date" property="finishDate" jdbcType="TIMESTAMP" />
+		<result column="withdraw_type" property="withdrawType"
+			jdbcType="CHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="channel_id" property="channelId" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="operater" property="operater" jdbcType="VARCHAR" />
+		<result column="operate_info" property="operateInfo" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, withdraw_code, customer_id, customer_code, member_code,
+		withdraw_amount, withdraw_fee,
+		apply_date, finish_date, withdraw_type, status, channel_id, remark, operater,
+		operate_info
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_record
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from withdraw_record
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tbug.ball.service.model.pay.WithdrawRecord">
+		insert into withdraw_record (id, withdraw_code, customer_id,
+		customer_code, member_code, withdraw_amount,
+		withdraw_fee, apply_date, finish_date,
+		withdraw_type, status, channel_id,
+		remark, operater, operate_info
+		)
+		values (#{id,jdbcType=INTEGER}, #{withdrawCode,jdbcType=CHAR},
+		#{customerId,jdbcType=INTEGER},
+		#{customerCode,jdbcType=CHAR}, #{memberCode,jdbcType=CHAR}, #{withdrawAmount,jdbcType=DECIMAL},
+		#{withdrawFee,jdbcType=DECIMAL}, #{applyDate,jdbcType=TIMESTAMP},
+		#{finishDate,jdbcType=TIMESTAMP},
+		#{withdrawType,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{channelId,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{operater,jdbcType=VARCHAR},
+		#{operateInfo,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.tbug.ball.service.model.pay.WithdrawRecord">
+		insert into withdraw_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="withdrawCode != null">
+				withdraw_code,
+			</if>
+			<if test="customerId != null">
+				customer_id,
+			</if>
+			<if test="customerCode != null">
+				customer_code,
+			</if>
+			<if test="memberCode != null">
+				member_code,
+			</if>
+			<if test="withdrawAmount != null">
+				withdraw_amount,
+			</if>
+			<if test="withdrawFee != null">
+				withdraw_fee,
+			</if>
+			<if test="applyDate != null">
+				apply_date,
+			</if>
+			<if test="finishDate != null">
+				finish_date,
+			</if>
+			<if test="withdrawType != null">
+				withdraw_type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="channelId != null">
+				channel_id,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="operater != null">
+				operater,
+			</if>
+			<if test="operateInfo != null">
+				operate_info,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="withdrawCode != null">
+				#{withdrawCode,jdbcType=CHAR},
+			</if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="customerCode != null">
+				#{customerCode,jdbcType=CHAR},
+			</if>
+			<if test="memberCode != null">
+				#{memberCode,jdbcType=CHAR},
+			</if>
+			<if test="withdrawAmount != null">
+				#{withdrawAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="withdrawFee != null">
+				#{withdrawFee,jdbcType=DECIMAL},
+			</if>
+			<if test="applyDate != null">
+				#{applyDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="finishDate != null">
+				#{finishDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="withdrawType != null">
+				#{withdrawType,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="channelId != null">
+				#{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operater != null">
+				#{operater,jdbcType=VARCHAR},
+			</if>
+			<if test="operateInfo != null">
+				#{operateInfo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.pay.WithdrawRecord">
+		update withdraw_record
+		<set>
+			<if test="withdrawCode != null">
+				withdraw_code = #{withdrawCode,jdbcType=CHAR},
+			</if>
+			<if test="customerId != null">
+				customer_id = #{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="customerCode != null">
+				customer_code = #{customerCode,jdbcType=CHAR},
+			</if>
+			<if test="memberCode != null">
+				member_code = #{memberCode,jdbcType=CHAR},
+			</if>
+			<if test="withdrawAmount != null">
+				withdraw_amount = #{withdrawAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="withdrawFee != null">
+				withdraw_fee = #{withdrawFee,jdbcType=DECIMAL},
+			</if>
+			<if test="applyDate != null">
+				apply_date = #{applyDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="finishDate != null">
+				finish_date = #{finishDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="withdrawType != null">
+				withdraw_type = #{withdrawType,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="channelId != null">
+				channel_id = #{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operater != null">
+				operater = #{operater,jdbcType=VARCHAR},
+			</if>
+			<if test="operateInfo != null">
+				operate_info = #{operateInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.pay.WithdrawRecord">
+		update withdraw_record
+		set withdraw_code = #{withdrawCode,jdbcType=CHAR},
+		customer_id = #{customerId,jdbcType=INTEGER},
+		customer_code = #{customerCode,jdbcType=CHAR},
+		member_code = #{memberCode,jdbcType=CHAR},
+		withdraw_amount = #{withdrawAmount,jdbcType=DECIMAL},
+		withdraw_fee = #{withdrawFee,jdbcType=DECIMAL},
+		apply_date = #{applyDate,jdbcType=TIMESTAMP},
+		finish_date = #{finishDate,jdbcType=TIMESTAMP},
+		withdraw_type = #{withdrawType,jdbcType=CHAR},
+		status = #{status,jdbcType=CHAR},
+		channel_id = #{channelId,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		operater = #{operater,jdbcType=VARCHAR},
+		operate_info = #{operateInfo,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="listByMap" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_record
+		<where>
+			<if test="withdrawCode != null and withdrawCode != ''">AND withdraw_code = #{withdrawCode,jdbcType=CHAR}</if>
+			<if test="customerId != null">AND customer_id = #{customerId,jdbcType=INTEGER}</if>
+			<if test="customerCode != null and customerCode != ''">AND customer_code = #{customerCode,jdbcType=CHAR}</if>
+			<if test="memberCode != null and memberCode != ''">AND member_code = #{memberCode,jdbcType=CHAR}</if>
+			<if test="withdrawType != null and withdrawType != ''">AND withdraw_type = #{withdrawType,jdbcType=CHAR}</if>
+			<if test="status != null and status != ''">AND status = #{status,jdbcType=CHAR}</if>
+			<if test="applyDateStart != null and applyDateStart != ''">AND apply_date &gt;= #{applyDateStart,jdbcType=TIMESTAMP}</if>
+			<if test="applyDateEnd != null and applyDateEnd != ''">AND apply_date &lt;= #{applyDateEnd,jdbcType=TIMESTAMP}</if>
+			<if test="channelId != null">AND channel_id = #{channelId,jdbcType=INTEGER}</if>
+		</where>
+		<choose>
+			<when
+				test="(field == 'id') and (sort == 'desc' or sort == 'DESC' or sort == 'asc' or sort == 'ASC')">
+				ORDER BY ${field} ${sort}
+			</when>
+			<otherwise>
+				order by id DESC
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			LIMIT #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+	<select id="countByMap" resultType="java.lang.Integer">
+		select count(*)
+		from withdraw_record
+		<where>
+			<if test="withdrawCode != null and withdrawCode != ''">AND withdraw_code = #{withdrawCode,jdbcType=CHAR}</if>
+			<if test="customerId != null">AND customer_id = #{customerId,jdbcType=INTEGER}</if>
+			<if test="customerCode != null and customerCode != ''">AND customer_code = #{customerCode,jdbcType=CHAR}</if>
+			<if test="memberCode != null and memberCode != ''">AND member_code = #{memberCode,jdbcType=CHAR}</if>
+			<if test="withdrawType != null and withdrawType != ''">AND withdraw_type = #{withdrawType,jdbcType=CHAR}</if>
+			<if test="status != null and status != ''">AND status = #{status,jdbcType=CHAR}</if>
+			<if test="applyDateStart != null and applyDateStart != ''">AND apply_date &gt;= #{applyDateStart,jdbcType=TIMESTAMP}</if>
+			<if test="applyDateEnd != null and applyDateEnd != ''">AND apply_date &lt;= #{applyDateEnd,jdbcType=TIMESTAMP}</if>
+			<if test="channelId != null">AND channel_id = #{channelId,jdbcType=INTEGER}</if>
+		</where>
+	</select>
+
+</mapper>

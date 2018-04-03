@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.user.BrokerMapper" >
+  <resultMap id="BaseResultMap" type="com.tbug.ball.service.model.user.Broker" >
+    <id column="broker_id" property="brokerId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="broker_code" property="brokerCode" jdbcType="VARCHAR" />
+    <result column="sign_code" property="signCode" jdbcType="VARCHAR" />
+    <result column="level_num" property="levelNum" jdbcType="TINYINT" />
+    <result column="level_code" property="levelCode" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="pwd_err_times" property="pwdErrTimes" jdbcType="TINYINT" />
+    <result column="lock_time" property="lockTime" jdbcType="TIMESTAMP" />
+    <result column="unlock_time" property="unlockTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    broker_id, parent_id,member_id, member_name, broker_code, sign_code, level_num, level_code, 
+    nick_name, creater, create_time, last_modify_user, modify_time, login_name, PASSWORD, 
+    salt, STATUS, pwd_err_times, lock_time, unlock_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tbug.ball.service.model.user.Broker" >
+    insert into broker (broker_id, parent_id, member_id, member_name, 
+      broker_code, sign_code, level_num, 
+      level_code, nick_name, creater, 
+      create_time, last_modify_user, modify_time, 
+      login_name, PASSWORD, salt, 
+      STATUS, pwd_err_times, lock_time, 
+      unlock_time)
+    values (#{brokerId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER},#{memberId,jdbcType=INTEGER}, #{memberName,jdbcType=VARCHAR}, 
+      #{brokerCode,jdbcType=VARCHAR}, #{signCode,jdbcType=VARCHAR}, #{levelNum,jdbcType=TINYINT}, 
+      #{levelCode,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastModifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{pwdErrTimes,jdbcType=TINYINT}, #{lockTime,jdbcType=TIMESTAMP}, 
+      #{unlockTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="brokerId" parameterType="com.tbug.ball.service.model.user.Broker" >
+    insert into broker
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brokerId != null" >
+        broker_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="brokerCode != null" >
+        broker_code,
+      </if>
+      <if test="signCode != null" >
+        sign_code,
+      </if>
+      <if test="levelNum != null" >
+        level_num,
+      </if>
+      <if test="levelCode != null" >
+        level_code,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastModifyUser != null" >
+        last_modify_user,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="pwdErrTimes != null" >
+        pwd_err_times,
+      </if>
+      <if test="lockTime != null" >
+        lock_time,
+      </if>
+      <if test="unlockTime != null" >
+        unlock_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brokerId != null" >
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerCode != null" >
+        #{brokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signCode != null" >
+        #{signCode,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNum != null" >
+        #{levelNum,jdbcType=TINYINT},
+      </if>
+      <if test="levelCode != null" >
+        #{levelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser != null" >
+        #{lastModifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="pwdErrTimes != null" >
+        #{pwdErrTimes,jdbcType=TINYINT},
+      </if>
+      <if test="lockTime != null" >
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlockTime != null" >
+        #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.user.Broker" >
+    update broker
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerCode != null" >
+        broker_code = #{brokerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signCode != null" >
+        sign_code = #{signCode,jdbcType=VARCHAR},
+      </if>
+      <if test="levelNum != null" >
+        level_num = #{levelNum,jdbcType=TINYINT},
+      </if>
+      <if test="levelCode != null" >
+        level_code = #{levelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser != null" >
+        last_modify_user = #{lastModifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="pwdErrTimes != null" >
+        pwd_err_times = #{pwdErrTimes,jdbcType=TINYINT},
+      </if>
+      <if test="lockTime != null" >
+        lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unlockTime != null" >
+        unlock_time = #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.user.Broker" >
+    update broker
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      broker_code = #{brokerCode,jdbcType=VARCHAR},
+      sign_code = #{signCode,jdbcType=VARCHAR},
+      level_num = #{levelNum,jdbcType=TINYINT},
+      level_code = #{levelCode,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_modify_user = #{lastModifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      pwd_err_times = #{pwdErrTimes,jdbcType=TINYINT},
+      lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      unlock_time = #{unlockTime,jdbcType=TIMESTAMP}
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  
+ <select id="selectByBrokerCode" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from broker
+  	where broker_code = #{brokerCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySignCode" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from broker
+  	where sign_code = #{signCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByLoginName" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from broker
+  	where login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByLevelCode" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from broker
+  	where level_code = #{levelCode,jdbcType=VARCHAR}
+  </select>
+  <select id="listByMap" resultMap="BaseResultMap">
+   	select 
+  	<include refid="Base_Column_List" />
+  	from broker
+  	<where>
+      <if test="memberId != null" >AND member_id = #{memberId,jdbcType=INTEGER}</if>
+      <if test="brokerCode != null and brokerCode != ''" >AND broker_code = #{brokerCode,jdbcType=VARCHAR}</if>
+      <if test="signCode != null and signCode != ''">AND sign_code = #{signCode,jdbcType=VARCHAR}</if>
+      <if test="levelNum != null" >AND level_num = #{levelNum,jdbcType=TINYINT}</if>
+      <if test="levelCode != null and levelCode != ''" >AND level_code like CONCAT(#{levelCode,jdbcType=VARCHAR},'%')</if>
+      <if test="loginName != null and loginName != ''" >AND login_name = #{loginName,jdbcType=VARCHAR}</if>
+      <if test="status != null and status != ''" >AND STATUS = #{status,jdbcType=CHAR}</if>
+  	</where>
+   <choose>
+  		<when test="(field == 'id') and (sort == 'desc' or sort == 'DESC' or sort == 'asc' or sort == 'ASC')">
+  			ORDER BY ${field} ${sort}
+  		</when>
+  		<otherwise>
+  			order by broker_id DESC
+  		</otherwise>
+  	</choose>
+  	<if test="offset != null and limit != null">
+  		LIMIT #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+  	</if>
+  </select>
+  <select id="countByMap" resultType="java.lang.Integer">
+   	select count(*)
+  	from broker
+  	<where>
+      <if test="memberId != null" >AND member_id = #{memberId,jdbcType=INTEGER}</if>
+      <if test="brokerCode != null and brokerCode != ''" >AND broker_code = #{brokerCode,jdbcType=VARCHAR}</if>
+      <if test="signCode != null and signCode != ''">AND sign_code = #{signCode,jdbcType=VARCHAR}</if>
+      <if test="levelNum != null" >AND level_num = #{levelNum,jdbcType=TINYINT}</if>
+      <if test="levelCode != null and levelCode != ''" >AND level_code like CONCAT(#{levelCode,jdbcType=VARCHAR},'%')</if>
+      <if test="loginName != null and loginName != ''" >AND login_name = #{loginName,jdbcType=VARCHAR}</if>
+      <if test="status != null and status != ''" >AND STATUS = #{status,jdbcType=CHAR}</if>
+  	</where>
+  </select>
+  
+</mapper>

@@ -1,0 +1,65 @@
+.a_button {
+	display: inline-block;
+	position: relative;
+	width: 55px;
+	height: 30px;
+	text-align: center;
+	font-family: tahoma, "宋体";
+	background: url(../img/tzbg.png) no-repeat 0 -31px;
+	color: #252525;
+}
+
+.a_b a:HOVER {
+	background-position: 0 -93px;
+}
+
+.a_b a:VISITED {
+	background-position: -235px -31px;
+}
+
+.span_title {
+	display: inline-block;
+	position: relative;
+	width: 55px;
+	height: 30px;
+	text-align: center;
+	font-family: tahoma, "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	color: #244304;
+}
+
+.w_100 {
+	width: 68px;
+	text-align: center;
+}
+
+.gamer_name {
+	color: #0041a2;
+}
+
+.modal-content .weui-cell .weui-cell__bd .c_default {
+	background-color: #0772B6;
+	color: white;
+}
+
+.modal-content .weui-cell .weui-cell__bd .c_display {
+	background-color: #808080;
+}
+
+.butt_white{background: #fff; color: #ff0000;text-align: center;
+    border:1px solid #e0e0e0;border-radius:0.4rem;}/*白色按钮(右边框)*/
+.butt_choose{background: #ff5400;color:#fff; text-align: center;
+    border:1px solid #e0e0e0;border-radius:0.4rem;}/*橙色按钮(右边框)*/
+    
+.clear{*zoom:1;}
+.clear:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+.clear { display:inline-block; } /* Hide from IE Mac */
+.clear {display:block;} /* End hide from IE Mac */
+
+.bank{ background:#FFF; width:52%;height:auto; border: 2px solid white;;  border-radius:0.4rem; float:left; display:inline-block; }
+.bank img{ width:80%;height:auto; padding: 8px; /*vertical-align:middle;*/ text-align:center; }
+.checked{height:auto; border:2px solid #fe9400; border-radius:0.4rem;
+    background:url(../img/get_09.png) no-repeat right bottom #FFF; background-size: 2rem auto;  }
+
+.weui-tabbar__icon i{color: black;}

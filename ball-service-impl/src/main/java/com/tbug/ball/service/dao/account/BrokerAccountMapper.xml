@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.account.BrokerAccountMapper">
+	<resultMap id="BaseResultMap"
+		type="com.tbug.ball.service.model.account.BrokerAccount">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+		<result column="balance" property="balance" jdbcType="DECIMAL" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="account_password" property="accountPassword"
+			jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, broker_id, balance, create_date, account_password, salt, status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from broker_account
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByPrimaryKeyForUpdate" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from broker_account
+		where id = #{id,jdbcType=INTEGER}
+		for update
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from broker_account
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tbug.ball.service.model.account.BrokerAccount">
+		insert into broker_account (id, broker_id, balance,
+		create_date, account_password, salt,
+		status)
+		values (#{id,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER},
+		#{balance,jdbcType=DECIMAL},
+		#{createDate,jdbcType=TIMESTAMP}, #{accountPassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tbug.ball.service.model.account.BrokerAccount">
+		insert into broker_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="brokerId != null">
+				broker_id,
+			</if>
+			<if test="balance != null">
+				balance,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="accountPassword != null">
+				account_password,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="brokerId != null">
+				#{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="balance != null">
+				#{balance,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="accountPassword != null">
+				#{accountPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.account.BrokerAccount">
+		update broker_account
+		<set>
+			<if test="brokerId != null">
+				broker_id = #{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="balance != null">
+				balance = #{balance,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="accountPassword != null">
+				account_password = #{accountPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.account.BrokerAccount">
+		update broker_account
+		set broker_id = #{brokerId,jdbcType=INTEGER},
+		balance = #{balance,jdbcType=DECIMAL},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		account_password = #{accountPassword,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectByMap" resultType="com.tbug.ball.service.model.account.BrokerAccountEx">
+		SELECT t1.id, t1.broker_id, t1.balance, t1.create_date, t1.status,
+			t2.broker_code,t2.sign_code, t2.level_code
+		FROM broker_account t1
+		LEFT JOIN broker t2 ON t1.broker_id=t2.broker_id
+		<where>
+			<if test="brokerId != null">AND t1.broker_id = #{brokerId,jdbcType=INTEGER}</if>
+			<if test="createDateStart != null and createDateStart != ''">AND t1.create_date &gt;=
+				#{createDateStart,jdbcType=TIMESTAMP}</if>
+			<if test="createDateEnd != null and createDateEnd != ''">AND t1.create_date &lt;= #{createDateEnd,jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null and status != ''">AND t1.status = #{status,jdbcType=CHAR}</if>
+			<if test="signCode != null and signCode != ''">AND t2.sign_code = #{signCode,jdbcType=CHAR}</if>
+			<if test="brokerCode != null and brokerCode != ''">AND t2.broker_code = #{brokerCode}</if>
+			<if test="levelCode != null and levelCode != ''">AND t2.level_code like CONCAT(#{levelCode},'%')</if>
+		</where>
+		<choose>
+	  		<when test="(field == 'balance') and (sort == 'desc' or sort == 'DESC' or sort == 'asc' or sort == 'ASC')">
+	  			ORDER BY ${field} ${sort}
+	  		</when>
+			<otherwise>
+				order by id DESC
+			</otherwise>
+		</choose>
+	  	<if test="offset != null and limit != null">
+	  		LIMIT #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	  	</if>
+	</select>
+	<select id="countByMap" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM broker_account t1
+		LEFT JOIN broker t2 ON t1.broker_id=t2.broker_id
+		<where>
+			<if test="brokerId != null">AND t1.broker_id = #{brokerId,jdbcType=INTEGER}</if>
+			<if test="createDateStart != null and createDateStart != ''">AND t1.create_date &gt;=
+				#{createDateStart,jdbcType=TIMESTAMP}</if>
+			<if test="createDateEnd != null and createDateEnd != ''">AND t1.create_date &lt;= #{createDateEnd,jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null and status != ''">AND t1.status = #{status,jdbcType=CHAR}</if>
+			<if test="signCode != null and signCode != ''">AND t2.sign_code = #{signCode,jdbcType=CHAR}</if>
+			<if test="brokerCode != null and brokerCode != ''">AND t2.broker_code = #{brokerCode}</if>
+			<if test="levelCode != null and levelCode != ''">AND t2.level_code like CONCAT(#{levelCode},'%')</if>
+		</where>
+	</select>
+	<select id="selectByBrokerId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from broker_account
+		where broker_id = #{brokerId,jdbcType=INTEGER}
+	</select>
+</mapper>

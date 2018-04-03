@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">   
+        
+	<dubbo:application name="provider-of-ball-service" />
+	
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:${propertie-file}" />
+	
+	<!-- zookeeper注册中心 -->
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.ip.port}" /> 
+
+	<!-- 使用multicast广播注册中心暴露服务地址 -->
+	<!-- <dubbo:registry address="multicast://10.57.41.19:1234" /> -->
+	<dubbo:protocol  name="dubbo" port="20880" />
+		
+	<bean id="scheduleService" class="com.tbug.ball.service.impl.ScheduleServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.ScheduleService" ref="scheduleService" />   
+	
+	<bean id="tradeService" class="com.tbug.ball.service.impl.TradeServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.TradeService" ref="tradeService" />   
+	
+	<bean id="brokerService" class="com.tbug.ball.service.impl.BrokerServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.BrokerService" ref="brokerService" />   
+	
+	<bean id="customerService" class="com.tbug.ball.service.impl.CustomerServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.CustomerService" ref="customerService" />   
+	
+	<bean id="memberService" class="com.tbug.ball.service.impl.MemberServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.MemberService" ref="memberService" />   
+	
+	<bean id="orderService" class="com.tbug.ball.service.impl.OrderServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.OrderService" ref="orderService" />   
+	
+	<bean id="menuService" class="com.tbug.ball.service.impl.MenuServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.MenuService" ref="menuService" />   
+	
+	<bean id="roleService" class="com.tbug.ball.service.impl.RoleServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.RoleService" ref="roleService" />   
+	
+	<bean id="deptService" class="com.tbug.ball.service.impl.DeptServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.DeptService" ref="deptService" />   
+	
+	<bean id="logService" class="com.tbug.ball.service.impl.LogServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.LogService" ref="logService" />  
+	 
+	<bean id="accountService" class="com.tbug.ball.service.impl.AccountServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.AccountService" ref="accountService" />   
+	
+	<bean id="payService" class="com.tbug.ball.service.impl.PayServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.PayService" ref="payService" />   
+	
+	<bean id="taskService" class="com.tbug.ball.service.impl.TaskServiceImpl" />
+	<dubbo:service interface="com.tbug.ball.service.TaskService" ref="taskService" />   
+
+</beans>

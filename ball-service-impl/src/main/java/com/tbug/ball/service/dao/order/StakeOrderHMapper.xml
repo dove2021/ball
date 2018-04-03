@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.order.StakeOrderHMapper">
+	<resultMap id="BaseResultMap" type="com.tbug.ball.service.model.order.StakeOrderH">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="CHAR" />
+		<result column="customer_id" property="customerId" jdbcType="INTEGER" />
+		<result column="customer_code" property="customerCode"
+			jdbcType="VARCHAR" />
+		<result column="broker_id" property="brokerId" jdbcType="INTEGER" />
+		<result column="broker_code" property="brokerCode" jdbcType="VARCHAR" />
+		<result column="member_id" property="memberId" jdbcType="INTEGER" />
+		<result column="member_Code" property="memberCode" jdbcType="VARCHAR" />
+		<result column="schedule_id" property="scheduleId" jdbcType="INTEGER" />
+		<result column="stake_type" property="stakeType" jdbcType="CHAR" />
+		<result column="stake_code" property="stakeCode" jdbcType="CHAR" />
+		<result column="stake_price" property="stakePrice" jdbcType="DECIMAL" />
+		<result column="order_num" property="orderNum" jdbcType="DECIMAL" />
+		<result column="trade_fee" property="tradeFee" jdbcType="DECIMAL" />
+		<result column="member_fee" property="memberFee" jdbcType="DECIMAL" />
+		<result column="stake_amount" property="stakeAmount" jdbcType="DECIMAL" />
+		<result column="odds_scale" property="oddsScale" jdbcType="DECIMAL" />
+		<result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+		<result column="pay_type" property="payType" jdbcType="CHAR" />
+		<result column="pre_clean_amount" property="preCleanAmount"
+			jdbcType="DECIMAL" />
+		<result column="order_status" property="orderStatus" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="is_clean" property="isClean" jdbcType="CHAR" />
+		<result column="clean_time" property="cleanTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, order_no, customer_id, customer_code, broker_id, broker_code, member_id,
+		member_code, schedule_id,
+		stake_type, stake_code, stake_price, order_num, trade_fee, member_fee,
+		stake_amount,
+		odds_scale, total_amount, pay_type, pre_clean_amount, order_status, create_time,
+		is_clean, clean_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from stake_order_h
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from stake_order_h
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tbug.ball.service.model.order.StakeOrderH">
+		insert into stake_order_h (id, order_no, customer_id, customer_code,
+		broker_id, broker_code, member_id,
+		member_code, schedule_id, stake_type,
+		stake_code, stake_price, order_num,
+		trade_fee, member_fee, stake_amount,
+		odds_scale, total_amount, pay_type,
+		pre_clean_amount, order_status, create_time,
+		is_clean, clean_time)
+		values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=CHAR},#{customerId,jdbcType=INTEGER},
+		#{customerCode,jdbcType=VARCHAR},
+		#{brokerId,jdbcType=INTEGER}, #{brokerCode,jdbcType=VARCHAR}, #{memberId,jdbcType=INTEGER},
+		#{memberCode,jdbcType=VARCHAR}, #{scheduleId,jdbcType=INTEGER},
+		#{stakeType,jdbcType=CHAR},
+		#{stakeCode,jdbcType=CHAR}, #{stakePrice,jdbcType=DECIMAL}, #{orderNum,jdbcType=DECIMAL},
+		#{tradeFee,jdbcType=DECIMAL}, #{memberFee,jdbcType=DECIMAL},
+		#{stakeAmount,jdbcType=DECIMAL},
+		#{oddsScale,jdbcType=DECIMAL}, #{totalAmount,jdbcType=DECIMAL}, #{payType,jdbcType=CHAR},
+		#{preCleanAmount,jdbcType=DECIMAL}, #{orderStatus,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{isClean,jdbcType=CHAR}, #{cleanTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tbug.ball.service.model.order.StakeOrderH">
+		insert into stake_order_h
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="orderNo != null">
+				order_no,
+			</if>
+			<if test="customerId != null">
+				customer_id,
+			</if>
+			<if test="customerName != null">
+				customer_name,
+			</if>
+			<if test="brokerId != null">
+				broker_id,
+			</if>
+			<if test="brokerCode != null">
+				broker_code,
+			</if>
+			<if test="memberId != null">
+				member_id,
+			</if>
+			<if test="memberCode != null">
+				member_code,
+			</if>
+			<if test="scheduleId != null">
+				schedule_id,
+			</if>
+			<if test="stakeType != null">
+				stake_type,
+			</if>
+			<if test="stakeCode != null">
+				stake_code,
+			</if>
+			<if test="stakePrice != null">
+				stake_price,
+			</if>
+			<if test="orderNum != null">
+				order_num,
+			</if>
+			<if test="tradeFee != null">
+				trade_fee,
+			</if>
+			<if test="memberFee != null">
+				member_fee,
+			</if>
+			<if test="stakeAmount != null">
+				stake_amount,
+			</if>
+			<if test="oddsScale != null">
+				odds_scale,
+			</if>
+			<if test="totalAmount != null">
+				total_amount,
+			</if>
+			<if test="payType != null">
+				pay_type,
+			</if>
+			<if test="preCleanAmount != null">
+				pre_clean_amount,
+			</if>
+			<if test="orderStatus != null">
+				order_status,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="isClean != null">
+				is_clean,
+			</if>
+			<if test="cleanTime != null">
+				clean_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="orderNo != null">
+				#{orderNo,jdbcType=CHAR},
+			</if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="customerName != null">
+				#{customerName,jdbcType=VARCHAR},
+			</if>
+			<if test="brokerId != null">
+				#{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="brokerCode != null">
+				#{brokerCode,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				#{memberId,jdbcType=INTEGER},
+			</if>
+			<if test="memberCode != null">
+				#{memberCode,jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleId != null">
+				#{scheduleId,jdbcType=INTEGER},
+			</if>
+			<if test="stakeType != null">
+				#{stakeType,jdbcType=CHAR},
+			</if>
+			<if test="stakeCode != null">
+				#{stakeCode,jdbcType=CHAR},
+			</if>
+			<if test="stakePrice != null">
+				#{stakePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="orderNum != null">
+				#{orderNum,jdbcType=DECIMAL},
+			</if>
+			<if test="tradeFee != null">
+				#{tradeFee,jdbcType=DECIMAL},
+			</if>
+			<if test="memberFee != null">
+				#{memberFee,jdbcType=DECIMAL},
+			</if>
+			<if test="stakeAmount != null">
+				#{stakeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="oddsScale != null">
+				#{oddsScale,jdbcType=DECIMAL},
+			</if>
+			<if test="totalAmount != null">
+				#{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="payType != null">
+				#{payType,jdbcType=CHAR},
+			</if>
+			<if test="preCleanAmount != null">
+				#{preCleanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderStatus != null">
+				#{orderStatus,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isClean != null">
+				#{isClean,jdbcType=CHAR},
+			</if>
+			<if test="cleanTime != null">
+				#{cleanTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.order.StakeOrderH">
+		update stake_order_h
+		<set>
+			<if test="orderNo != null">
+				order_no = #{orderNo,jdbcType=CHAR},
+			</if>
+			<if test="customerId != null">
+				customer_id = #{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="customerName != null">
+				customer_name = #{customerName,jdbcType=VARCHAR},
+			</if>
+			<if test="brokerId != null">
+				broker_id = #{brokerId,jdbcType=INTEGER},
+			</if>
+			<if test="brokerCode != null">
+				broker_code = #{brokerCode,jdbcType=VARCHAR},
+			</if>
+			<if test="memberId != null">
+				member_id = #{memberId,jdbcType=INTEGER},
+			</if>
+			<if test="memberCode != null">
+				member_code = #{memberCode,jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleId != null">
+				schedule_id = #{scheduleId,jdbcType=INTEGER},
+			</if>
+			<if test="stakeType != null">
+				stake_type = #{stakeType,jdbcType=CHAR},
+			</if>
+			<if test="stakeCode != null">
+				stake_code = #{stakeCode,jdbcType=CHAR},
+			</if>
+			<if test="stakePrice != null">
+				stake_price = #{stakePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="orderNum != null">
+				order_num = #{orderNum,jdbcType=DECIMAL},
+			</if>
+			<if test="tradeFee != null">
+				trade_fee = #{tradeFee,jdbcType=DECIMAL},
+			</if>
+			<if test="memberFee != null">
+				member_fee = #{memberFee,jdbcType=DECIMAL},
+			</if>
+			<if test="stakeAmount != null">
+				stake_amount = #{stakeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="oddsScale != null">
+				odds_scale = #{oddsScale,jdbcType=DECIMAL},
+			</if>
+			<if test="totalAmount != null">
+				total_amount = #{totalAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="payType != null">
+				pay_type = #{payType,jdbcType=CHAR},
+			</if>
+			<if test="preCleanAmount != null">
+				pre_clean_amount = #{preCleanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="orderStatus != null">
+				order_status = #{orderStatus,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isClean != null">
+				is_clean = #{isClean,jdbcType=CHAR},
+			</if>
+			<if test="cleanTime != null">
+				clean_time = #{cleanTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.order.StakeOrderH">
+		update stake_order_h
+		set order_no = #{orderNo,jdbcType=CHAR},
+		customer_id = #{customerId,jdbcType=INTEGER},
+		customer_name = #{customerName,jdbcType=VARCHAR},
+		broker_id = #{brokerId,jdbcType=INTEGER},
+		broker_code = #{brokerCode,jdbcType=VARCHAR},
+		member_id = #{memberId,jdbcType=INTEGER},
+		member_code = #{memberCode,jdbcType=VARCHAR},
+		schedule_id = #{scheduleId,jdbcType=INTEGER},
+		stake_type = #{stakeType,jdbcType=CHAR},
+		stake_code = #{stakeCode,jdbcType=CHAR},
+		stake_price = #{stakePrice,jdbcType=DECIMAL},
+		order_num = #{orderNum,jdbcType=DECIMAL},
+		trade_fee = #{tradeFee,jdbcType=DECIMAL},
+		member_fee = #{memberFee,jdbcType=DECIMAL},
+		stake_amount = #{stakeAmount,jdbcType=DECIMAL},
+		odds_scale = #{oddsScale,jdbcType=DECIMAL},
+		total_amount = #{totalAmount,jdbcType=DECIMAL},
+		pay_type = #{payType,jdbcType=CHAR},
+		pre_clean_amount = #{preCleanAmount,jdbcType=DECIMAL},
+		order_status = #{orderStatus,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		is_clean = #{isClean,jdbcType=CHAR},
+		clean_time = #{cleanTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="listByMap" resultType="com.tbug.ball.service.model.order.StakeOrderH">
+		SELECT 
+			t1.*,(case when t2.clean_amount is null then 0 else t2.clean_amount end) clean_amount
+		FROM stake_order_h t1
+		LEFT JOIN order_clean t2 ON t1.id=t2.id
+		<where>
+			<if test="orderNo != null and orderNo != ''">AND t1.order_no = #{orderNo,jdbcType=CHAR}</if>
+			<if test="customerId != null">AND t1.customer_id = #{customerId,jdbcType=INTEGER}</if>
+			<if test="customerCode != null and customerCode != ''">AND t1.customer_code = #{customerCode,jdbcType=VARCHAR}</if>
+			<if test="brokerId != null and brokerId != ''">AND t1.broker_id = #{brokerId,jdbcType=INTEGER}</if>
+			<if test="brokerCode != null and brokerCode != ''">AND t1.broker_code = #{brokerCode,jdbcType=VARCHAR}</if>
+			<if test="memberId != null">AND t1.member_id = #{memberId,jdbcType=INTEGER}</if>
+			<if test="memberCode != null and memberCode != ''">AND t1.member_code = #{memberCode,jdbcType=VARCHAR}</if>
+			<if test="scheduleId != null">AND t1.schedule_id = #{scheduleId,jdbcType=INTEGER}</if>
+			<if test="stakeType != null and stakeType != ''">AND t1.stake_type = #{stakeType,jdbcType=CHAR}</if>
+			<if test="stakeCode != null and stakeCode != ''">AND t1.stake_code = #{stakeCode,jdbcType=CHAR}</if>
+			<if test="stakePrice != null">AND t1.stake_price = #{stakePrice,jdbcType=DECIMAL}</if>
+			<if test="orderNum != null">AND t1.order_num = #{orderNum,jdbcType=DECIMAL}</if>
+			<if test="tradeFee != null">AND t1.trade_fee = #{tradeFee,jdbcType=DECIMAL}</if>
+			<if test="memberFee != null">AND t1.member_fee = #{memberFee,jdbcType=DECIMAL}</if>
+			<if test="stakeAmount != null">AND t1.stake_amount = #{stakeAmount,jdbcType=DECIMAL}</if>
+			<if test="payType != null and payType != ''">AND t1.pay_type = #{payType,jdbcType=CHAR}</if>
+			<if test="orderStatus != null and orderStatus != ''">AND t1.order_status = #{orderStatus,jdbcType=CHAR}</if>
+			<if test="createTime != null">AND t1.create_time = #{createTime,jdbcType=TIMESTAMP}</if>
+			<if test="isClean != null and isClean != ''">AND t1.is_clean = #{isClean,jdbcType=CHAR}</if>		
+		</where>
+		<choose>
+	  		<when test="(field == 'create_time') and (sort == 'desc' or sort == 'DESC' or sort == 'asc' or sort == 'ASC')">
+	  			ORDER BY ${field} ${sort}
+	  		</when>
+			<otherwise>ORDER BY t1.id DESC</otherwise>
+		</choose>
+	  	<if test="offset != null and limit != null">
+	  		LIMIT #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	  	</if>
+	</select>
+	<select id="countByMap" resultType="int">
+		SELECT count(*)
+		FROM stake_order_h t1
+		LEFT JOIN order_clean t2 ON t1.id=t2.id
+		<where>
+			<if test="orderNo != null and orderNo != ''">AND t1.order_no = #{orderNo,jdbcType=CHAR}</if>
+			<if test="customerId != null">AND t1.customer_id = #{customerId,jdbcType=INTEGER}</if>
+			<if test="customerName != null and customerName != ''">AND t1.customer_name = #{customerName,jdbcType=VARCHAR}</if>
+			<if test="brokerId != null and brokerId != ''">AND t1.broker_id = #{brokerId,jdbcType=INTEGER}</if>
+			<if test="brokerCode != null and brokerCode != ''">AND t1.broker_code = #{brokerCode,jdbcType=VARCHAR}</if>
+			<if test="memberId != null">AND t1.member_id = #{memberId,jdbcType=INTEGER}</if>
+			<if test="memberCode != null and memberCode != ''">AND t1.member_code = #{memberCode,jdbcType=VARCHAR}</if>
+			<if test="scheduleId != null">AND t1.schedule_id = #{scheduleId,jdbcType=INTEGER}</if>
+			<if test="stakeType != null and stakeType != ''">AND t1.stake_type = #{stakeType,jdbcType=CHAR}</if>
+			<if test="stakeCode != null and stakeCode != ''">AND t1.stake_code = #{stakeCode,jdbcType=CHAR}</if>
+			<if test="stakePrice != null">AND t1.stake_price = #{stakePrice,jdbcType=DECIMAL}</if>
+			<if test="orderNum != null">AND t1.order_num = #{orderNum,jdbcType=DECIMAL}</if>
+			<if test="tradeFee != null">AND t1.trade_fee = #{tradeFee,jdbcType=DECIMAL}</if>
+			<if test="memberFee != null">AND t1.member_fee = #{memberFee,jdbcType=DECIMAL}</if>
+			<if test="stakeAmount != null">AND t1.stake_amount = #{stakeAmount,jdbcType=DECIMAL}</if>
+			<if test="payType != null and payType != ''">AND t1.pay_type = #{payType,jdbcType=CHAR}</if>
+			<if test="orderStatus != null and orderStatus != ''">AND t1.order_status = #{orderStatus,jdbcType=CHAR}</if>
+			<if test="createTime != null">AND t1.create_time = #{createTime,jdbcType=TIMESTAMP}</if>
+			<if test="isClean != null and isClean != ''">AND t1.is_clean = #{isClean,jdbcType=CHAR}</if>		
+		</where>
+	</select>
+</mapper>

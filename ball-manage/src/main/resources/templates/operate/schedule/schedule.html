@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include::header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div id="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button type="button" shiro:hasPermission="operate:schedule:add" 
+								class="btn btn-primary" onclick="add()">
+								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button type="button" shiro:hasPermission="operate:schedule:onsale" 
+								class="btn btn-info" onclick="onSale()">
+								<i class="fa fa-calendar-check-o"></i>上架
+							</button>
+							<button type="button" shiro:hasPermission="operate:schedule:offSale" 
+								class="btn label-danger" onclick="offSale()">
+								<i class="fa fa-calendar-times-o"></i>下架
+							</button>
+						</div>
+						<div class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div class="columns pull-right col-md-2">
+							<input id="searchName" type="text" class="form-control" placeholder="甲方">
+						</div>
+					</div>
+					
+					<table id="scheduleTable" data-mobile-responsive="true"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 权限控制 -->
+	<div>
+		<script type="text/javascript">
+			var a_edit = 'hidden';
+			var b_onSale = 'hidden';
+			var c_offSale = 'hidden';
+			var d_result = 'hidden';
+			var e_clean = 'hidden';
+		</script>
+	</div>
+	<div shiro:hasPermission="operate:schedule:edit">
+		<script type="text/javascript">
+		a_edit = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="operate:schedule:onsale">
+		<script type="text/javascript">
+		b_onSale = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="operate:schedule:offSale">
+		<script type="text/javascript">
+		c_offSale = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="operate:schedule:result">
+		<script type="text/javascript">
+		d_result = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="operate:schedule:clean">
+		<script type="text/javascript">
+		e_clean = '';
+		</script>
+	</div>
+	
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/operate/schedule/schedule.js">
+	</script>
+</body>
+
+</html>

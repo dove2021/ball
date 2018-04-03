@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include::header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div id="fixed-table-toolbar">
+					</div>
+					
+					<table id="profitTable" data-mobile-responsive="true"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 权限控制 -->
+	<div>
+		<script type="text/javascript">
+			var a_edit = 'hidden';
+		</script>
+	</div>
+	<div shiro:hasPermission="operate:profit:edit">
+		<script type="text/javascript">
+			a_edit = '';
+		</script>
+	</div>
+	
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/operate/profit/profit.js">
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="scheduleAddForm">
+							<div class="form-group">
+								<label class="col-sm-3 control-label "><span class="red-star">*</span>会员编号：</label>
+								<div class="col-sm-8">
+									<input id="memberCode" name="memberCode" class="form-control" type="text" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>标题：</label>
+								<div class="col-sm-8">
+									<input id="title" name="title" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>甲方</label>
+								<div class="col-sm-8">
+									<input id="aName" name="aName" value="" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>乙方</label>
+								<div class="col-sm-8">
+									<input id="bName" name="bName" value="" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>比赛开始时间</label>
+								<div class="col-sm-8">
+									<input id="startTime" name="startTime" value="" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>甲赢赔率</label>
+								<div class="col-sm-8">
+									<input id="oddsWin" name="oddsWin" value="" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>甲乙平赔率</label>
+								<div class="col-sm-8">
+									<input id="oddsDraw" name="oddsDraw" value="" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><span class="red-star">*</span>甲输赔率</label>
+								<div class="col-sm-8">
+									<input id="oddsLose" name="oddsLose" value="" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-5 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+ 			</div>
+		</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/plugins/layer/laydate/laydate.js"></script>
+	<script type="text/javascript" src="/js/appjs/operate/schedule/add.js"></script>
+</body>
+</html>

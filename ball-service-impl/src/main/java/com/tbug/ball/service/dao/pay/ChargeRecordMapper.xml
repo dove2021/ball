@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.pay.ChargeRecordMapper">
+	<resultMap id="BaseResultMap" type="com.tbug.ball.service.model.pay.ChargeRecord">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="charge_code" property="chargeCode" jdbcType="CHAR" />
+		<result column="customer_id" property="customerId" jdbcType="INTEGER" />
+		<result column="customer_code" property="customerCode"
+			jdbcType="CHAR" />
+		<result column="member_code" property="memberCode" jdbcType="CHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="confirm_amount" property="confirmAmount" jdbcType="DECIMAL" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="creater" property="creater" jdbcType="VARCHAR" />
+		<result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+		<result column="charge_type" property="chargeType" jdbcType="CHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="channel_id" property="channelId" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="operater" property="operater" jdbcType="VARCHAR" />
+		<result column="operate_info" property="operateInfo" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, charge_code, customer_id, customer_code, member_code, amount,confirm_amount,
+		create_date, creater, finish_time,
+		charge_type, status, channel_id, remark, operater, operate_info
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from charge_record
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from charge_record
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tbug.ball.service.model.pay.ChargeRecord">
+		insert into charge_record (id, charge_code, customer_id,
+		customer_code, member_code, amount,confirm_amount,
+		create_date, creater, finish_time, charge_type,
+		status, channel_id, remark, operater, operate_info)
+		values (#{id,jdbcType=INTEGER}, #{chargeCode,jdbcType=CHAR},
+		#{customerId,jdbcType=INTEGER},
+		#{customerCode,jdbcType=CHAR}, #{memberCode,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL},#{confirmAmount,jdbcType=DECIMAL},
+		#{createDate,jdbcType=TIMESTAMP},#{creater,jdbcType=VARCHAR} #{finishTime,jdbcType=TIMESTAMP},
+		#{chargeType,jdbcType=CHAR},
+		#{status,jdbcType=CHAR}, #{channelId,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR},
+		#{operater,jdbcType=VARCHAR},#{operateInfo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tbug.ball.service.model.pay.ChargeRecord">
+		insert into charge_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="chargeCode != null">
+				charge_code,
+			</if>
+			<if test="customerId != null">
+				customer_id,
+			</if>
+			<if test="customerCode != null">
+				customer_code,
+			</if>
+			<if test="memberCode != null">
+				member_code,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="confirmAmount != null">
+				confirm_amount,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="creater != null">
+				creater,
+			</if>
+			<if test="finishTime != null">
+				finish_time,
+			</if>
+			<if test="chargeType != null">
+				charge_type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="channelId != null">
+				channel_id,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="operater != null">
+				operater,
+			</if>
+			<if test="operateInfo != null">
+				operate_info,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="chargeCode != null">
+				#{chargeCode,jdbcType=CHAR},
+			</if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="customerCode != null">
+				#{customerCode,jdbcType=CHAR},
+			</if>
+			<if test="memberCode != null">
+				#{memberCode,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="confirmAmount != null">
+				#{confirmAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creater != null">
+				#{creater,jdbcType=VARCHAR},
+			</if>
+			<if test="finishTime != null">
+				#{finishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="chargeType != null">
+				#{chargeType,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="channelId != null">
+				#{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operater != null">
+				#{operater,jdbcType=VARCHAR},
+			</if>
+			<if test="operateInfo != null">
+				#{operateInfo,jdbcType=VARCHAR},
+			</if>			
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.pay.ChargeRecord">
+		update charge_record
+		<set>
+			<if test="chargeCode != null">
+				charge_code = #{chargeCode,jdbcType=CHAR},
+			</if>
+			<if test="customerId != null">
+				customer_id = #{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="customerCode != null">
+				customer_code = #{customerCode,jdbcType=CHAR},
+			</if>
+			<if test="memberCode != null">
+				member_code = #{memberCode,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="confirmAmount != null">
+				confirm_amount = #{confirmAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creater != null">
+				creater = #{creater,jdbcType=VARCHAR},
+			</if>
+			<if test="finishTime != null">
+				finish_time = #{finishTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="chargeType != null">
+				charge_type = #{chargeType,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="channelId != null">
+				channel_id = #{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operater != null">
+				operater = #{operater,jdbcType=VARCHAR},
+			</if>
+			<if test="operateInfo != null">
+				operate_info = #{operateInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.pay.ChargeRecord">
+		update charge_record
+		set charge_code = #{chargeCode,jdbcType=CHAR},
+		customer_id = #{customerId,jdbcType=INTEGER},
+		customer_code = #{customerCode,jdbcType=CHAR},
+		member_code = #{memberCode,jdbcType=CHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		confirm_amount = #{confirmAmount,jdbcType=DECIMAL},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		creater = #{creater,jdbcType=VARCHAR},
+		finish_time = #{finishTime,jdbcType=TIMESTAMP},
+		charge_type = #{chargeType,jdbcType=CHAR},
+		status = #{status,jdbcType=CHAR},
+		channel_id = #{channelId,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		operater = #{operater,jdbcType=VARCHAR},
+		operate_info = #{operateInfo,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<select id="listByMap" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from charge_record
+		<where>
+			<if test="chargeCode != null and chargeCode != ''">AND charge_code = #{chargeCode,jdbcType=CHAR}</if>
+			<if test="customerId != null">AND customer_id = #{customerId,jdbcType=INTEGER}</if>
+			<if test="customerCode != null and customerCode != ''">AND customer_code = #{customerCode,jdbcType=CHAR}</if>
+			<if test="memberCode != null and memberCode != ''">AND member_code = #{memberCode,jdbcType=CHAR}</if>
+			<if test="amount != null">AND amount = #{amount,jdbcType=DECIMAL}</if>
+			<if test="chargeType != null and chargeType != ''">AND charge_type = #{chargeType,jdbcType=CHAR}</if>
+			<if test="status != null and status != ''">AND status = #{status,jdbcType=CHAR}</if>			
+		</where>
+	   <choose>
+	  		<when test="(field == 'id') and (sort == 'desc' or sort == 'DESC' or sort == 'asc' or sort == 'ASC')">
+	  			ORDER BY ${field} ${sort}
+	  		</when>
+	  		<otherwise>
+	  			order by id DESC
+	  		</otherwise>
+	  	</choose>
+	  	<if test="offset != null and limit != null">
+	  		LIMIT #{offset,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER}
+	  	</if>
+	</select>
+	<select id="countByMap" resultType="java.lang.Integer">
+		select count(*)
+		from charge_record
+		<where>
+			<if test="chargeCode != null and chargeCode != ''">AND charge_code = #{chargeCode,jdbcType=CHAR}</if>
+			<if test="customerId != null">AND customer_id = #{customerId,jdbcType=INTEGER}</if>
+			<if test="customerCode != null and customerCode != ''">AND customer_code = #{customerCode,jdbcType=CHAR}</if>
+			<if test="memberCode != null and memberCode != ''">AND member_code = #{memberCode,jdbcType=CHAR}</if>
+			<if test="amount != null">AND amount = #{amount,jdbcType=DECIMAL}</if>
+			<if test="chargeType != null and chargeType != ''">AND charge_type = #{chargeType,jdbcType=CHAR}</if>
+			<if test="status != null and status != ''">AND status = #{status,jdbcType=CHAR}</if>			
+		</where>	
+	</select>
+</mapper>

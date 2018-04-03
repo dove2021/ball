@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tbug.ball.service.dao.pay.WithdrawFileMapper">
+	<resultMap id="BaseResultMap" type="com.tbug.ball.service.model.pay.WithdrawFile">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="customer_id" property="customerId" jdbcType="INTEGER" />
+		<result column="channel_id" property="channelId" jdbcType="INTEGER" />
+		<result column="org_file_name" property="orgFileName" jdbcType="VARCHAR" />
+		<result column="creater_date" property="createrDate" jdbcType="TIMESTAMP" />
+		<result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+		<result column="new_file_name" property="newFileName" jdbcType="VARCHAR" />
+		<result column="file_path" property="filePath" jdbcType="VARCHAR" />
+		<result column="file_size" property="fileSize" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.tbug.ball.service.model.pay.WithdrawFile"
+		extends="BaseResultMap">
+		<result column="img_content" property="imgContent" jdbcType="LONGVARBINARY" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, customer_id, channel_id, org_file_name, creater_date, modify_date,
+		new_file_name,
+		file_path, file_size, status
+	</sql>
+	<sql id="Blob_Column_List">
+		img_content
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from withdraw_file
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from withdraw_file
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tbug.ball.service.model.pay.WithdrawFile">
+		insert into withdraw_file (id, customer_id, channel_id,
+		org_file_name, creater_date, modify_date,
+		new_file_name, file_path, file_size,
+		status, img_content)
+		values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},
+		#{channelId,jdbcType=INTEGER},
+		#{orgFileName,jdbcType=VARCHAR}, #{createrDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP},
+		#{newFileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR},
+		#{fileSize,jdbcType=INTEGER},
+		#{status,jdbcType=CHAR}, #{imgContent,jdbcType=LONGVARBINARY})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tbug.ball.service.model.pay.WithdrawFile">
+		insert into withdraw_file
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="customerId != null">
+				customer_id,
+			</if>
+			<if test="channelId != null">
+				channel_id,
+			</if>
+			<if test="orgFileName != null">
+				org_file_name,
+			</if>
+			<if test="createrDate != null">
+				creater_date,
+			</if>
+			<if test="modifyDate != null">
+				modify_date,
+			</if>
+			<if test="newFileName != null">
+				new_file_name,
+			</if>
+			<if test="filePath != null">
+				file_path,
+			</if>
+			<if test="fileSize != null">
+				file_size,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="imgContent != null">
+				img_content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="customerId != null">
+				#{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="channelId != null">
+				#{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="orgFileName != null">
+				#{orgFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="createrDate != null">
+				#{createrDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDate != null">
+				#{modifyDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="newFileName != null">
+				#{newFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="filePath != null">
+				#{filePath,jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				#{fileSize,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="imgContent != null">
+				#{imgContent,jdbcType=LONGVARBINARY},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tbug.ball.service.model.pay.WithdrawFile">
+		update withdraw_file
+		<set>
+			<if test="customerId != null">
+				customer_id = #{customerId,jdbcType=INTEGER},
+			</if>
+			<if test="channelId != null">
+				channel_id = #{channelId,jdbcType=INTEGER},
+			</if>
+			<if test="orgFileName != null">
+				org_file_name = #{orgFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="createrDate != null">
+				creater_date = #{createrDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDate != null">
+				modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="newFileName != null">
+				new_file_name = #{newFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="filePath != null">
+				file_path = #{filePath,jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				file_size = #{fileSize,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="imgContent != null">
+				img_content = #{imgContent,jdbcType=LONGVARBINARY},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tbug.ball.service.model.pay.WithdrawFile">
+		update withdraw_file
+		set customer_id = #{customerId,jdbcType=INTEGER},
+		channel_id = #{channelId,jdbcType=INTEGER},
+		org_file_name = #{orgFileName,jdbcType=VARCHAR},
+		creater_date = #{createrDate,jdbcType=TIMESTAMP},
+		modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+		new_file_name = #{newFileName,jdbcType=VARCHAR},
+		file_path = #{filePath,jdbcType=VARCHAR},
+		file_size = #{fileSize,jdbcType=INTEGER},
+		status = #{status,jdbcType=CHAR},
+		img_content = #{imgContent,jdbcType=LONGVARBINARY}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tbug.ball.service.model.pay.WithdrawFile">
+		update withdraw_file
+		set customer_id = #{customerId,jdbcType=INTEGER},
+		channel_id = #{channelId,jdbcType=INTEGER},
+		org_file_name = #{orgFileName,jdbcType=VARCHAR},
+		creater_date = #{createrDate,jdbcType=TIMESTAMP},
+		modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+		new_file_name = #{newFileName,jdbcType=VARCHAR},
+		file_path = #{filePath,jdbcType=VARCHAR},
+		file_size = #{fileSize,jdbcType=INTEGER},
+		status = #{status,jdbcType=CHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="ListByCustomerId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from withdraw_file
+		<where>
+			<if test="customerId != null">AND customer_id = #{customerId,jdbcType=INTEGER} AND
+				status = '1'
+			</if>
+		</where>
+	</select>
+
+	<select id="getWithdrawFile" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from withdraw_file
+		where customer_id = #{customerId}
+		AND channel_id =
+		#{channelId}
+		AND status = '1'
+	</select>
+</mapper>
